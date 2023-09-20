@@ -4,8 +4,17 @@ function TodoItem(props) {
   function deleteHandler(id) {
     props.onDeleteHandler(id);
   }
+  function completeHandler(id) {
+    props.onCompleteHandler(id);
+  }
   return (
-    <Card key={props.id}>
+    <Card
+      key={props.id}
+      style={{
+        borderColor: `${props.completed ? "green" : ""}`,
+        backgroundColor: `${props.completed ? "lightgreen" : ""}`,
+      }}
+    >
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
         <Card.Text>{props.description}</Card.Text>
@@ -16,6 +25,14 @@ function TodoItem(props) {
           }}
         >
           Delete
+        </Button>{" "}
+        <Button
+          variant="success"
+          onClick={() => {
+            completeHandler(props.id);
+          }}
+        >
+          Complete
         </Button>
       </Card.Body>
     </Card>

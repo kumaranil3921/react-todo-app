@@ -10,6 +10,8 @@ function TodoList(props) {
             description={todo.description}
             id={todo.id}
             onDeleteHandler={props.onDelete}
+            onCompleteHandler={props.onComplete}
+            completed={todo.completed}
           />
         );
       })}

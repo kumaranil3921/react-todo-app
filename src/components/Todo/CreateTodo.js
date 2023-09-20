@@ -30,6 +30,7 @@ function CreateTodo(props) {
       id: Math.random().toString(),
       title,
       description,
+      completed: false,
     });
     setTitle("");
     setDescription("");

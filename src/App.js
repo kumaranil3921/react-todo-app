@@ -23,25 +23,39 @@ function App() {
     todoCopy.splice(itemIndexToDelete, 1);
     setTodoList([...todoCopy]);
   }
-  return (
-    <Container fluid="true">
-      <Row>
-        <Col>
-          <Header />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <CreateTodo onCreateTodo={addTodoHandler} />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <TodoList todos={todoList} onDelete={deleteHandler} />
-        </Col>
-      </Row>
-    </Container>
-  );
+    function completeHandler(id) {
+      let todoCopy = [...todoList];
+      const itemIndexToUpdate = todoCopy.findIndex((todoItem) => {
+        return todoItem.id === id;
+      });
+      const itemToUpdate = todoCopy[itemIndexToUpdate];
+      itemToUpdate.completed = true;
+      todoCopy.splice(itemIndexToUpdate, 1, itemToUpdate);
+      setTodoList([...todoCopy]);
+    }
+    return (
+      <Container fluid="true">
+        <Row>
+          <Col>
+            <Header />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <CreateTodo onCreateTodo={addTodoHandler} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <TodoList
+              todos={todoList}
+              onDelete={deleteHandler}
+              onComplete={completeHandler}
+            />
+          </Col>
+        </Row>
+      </Container>
+    );
 }
 
 export default App;
